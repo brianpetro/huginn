@@ -55,7 +55,7 @@ module ApplicationHelper
 
   def omniauth_provider_icon(provider)
     case provider.to_sym
-    when :twitter, :tumblr, :github, :dropbox
+    when :twitter, :tumblr, :github, :dropbox, :linkedin
       icon_tag("fa-#{provider}")
     when :wunderlist
       icon_tag("fa-list")

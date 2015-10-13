@@ -274,6 +274,12 @@ Devise.setup do |config|
     end
   end
 
+  if defined?(OmniAuth::Strategies::LinkedIn) &&
+     (key = ENV["LINKEDIN_OAUTH_KEY"]).present? &&
+     (secret = ENV["LINKEDIN_OAUTH_SECRET"]).present?
+    config.omniauth :linkedin, key, secret
+  end
+
   # ==> Warden configuration
   # If you want to use other strategies, that are not supported by Devise, or
   # change the failure app, you can configure them inside the config.warden block.
