@@ -90,7 +90,7 @@ module Agents
       tweets = twitter.search(interpolated['search'], opts).take(max_results)
 
       tweets.each do |tweet|
-        if (tweet.created_at >= starting_at)
+        if (tweet.created_at >= starting_at) && (tweet.id > since_id.to_i)
           memory['since_id'] = tweet.id if !memory['since_id'] || (tweet.id > memory['since_id'])
 
           create_event payload: tweet.attrs
