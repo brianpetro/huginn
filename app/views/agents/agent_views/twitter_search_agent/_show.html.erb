@@ -1,0 +1,14 @@
+<% content_for :head do %>
+  <%= javascript_include_tag "graphing" %>
+<% end %>
+
+<h3>Recent Tweets</h3>
+<div class="filter-group tweets">
+  <div class='filter'><%= @agent.options[:search] %></div>
+  <% @agent.events.order("id desc").limit(2000).each do |event| %>
+    <% next unless event.payload[:text].present? %>
+    <div class='tweet'>
+      <%= event.payload[:text] %> - <%= link_to event.payload[:user][:screen_name], "http://twitter.com/#{event.payload[:user][:screen_name]}" %>
+    </div>
+  <% end %>
+</div>
